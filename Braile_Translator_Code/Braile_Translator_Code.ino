@@ -5,6 +5,8 @@ int clockPin = 12;
 ////Pin connected to DS of 74HC595
 int dataPin = 11;
 
+int d = 2;
+
 //holders for infromation you're going to pass to shifting function
 byte data;
 byte dataArray[10];
@@ -31,12 +33,11 @@ void setup() {
 }
 
 void loop() {
-  
-  clearReg();
-
-  letterA(1);
-  delay(2500);
-
+    letterA(1);
+    letterB(2);
+    letterC(3);
+    letterD(4);
+    letterE(5);
 }
 
 
@@ -90,6 +91,7 @@ void shiftOut(int myDataPin, int myClockPin, byte myDataOut) {
 
 void clearReg() {
   digitalWrite(latchPin, 0);
+  shiftOut(dataPin, clockPin, 0);
   shiftOut(dataPin, clockPin, 0);
   shiftOut(dataPin, clockPin, 0);
   digitalWrite(latchPin, 1);
@@ -158,5 +160,430 @@ void letterA(int cell) {
     shiftOut(dataPin, clockPin, byteTwo);
     shiftOut(dataPin, clockPin, byteOne);
     digitalWrite(latchPin, HIGH);
+    delay(d);
+    clearReg();
+    delay(d);
+}
 
+//Code for letter B
+void letterB(int cell) {
+  //Clears bools  
+  bool regOne[8] = {0,0,0,0,0,0,0,0}; 
+  bool regTwo[8] = {0,0,0,0,0,0,0,0}; 
+  
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[1] = 1;
+      break;
+      
+      case 2:
+      regOne[3] = 1;
+      break;
+      
+      case 3:
+      regOne[5] = 1;
+      break;
+
+      case 4:
+      regOne[7] = 1;
+      break;
+
+      case 5:
+      regTwo[2] = 1;
+      break;
+
+      case 6:
+      regTwo[4] = 1;
+      break;
+
+      case 7:
+      regTwo[6] = 1;
+      break;
+      
+    }
+    
+    byte byteOne = boolArrayToByte(regOne);
+    byte byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 10); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[1] = 1;
+      break;
+      
+      case 2:
+      regOne[3] = 1;
+      break;
+      
+      case 3:
+      regOne[5] = 1;
+      break;
+
+      case 4:
+      regOne[7] = 1;
+      break;
+
+      case 5:
+      regTwo[2] = 1;
+      break;
+
+      case 6:
+      regTwo[4] = 1;
+      break;
+
+      case 7:
+      regTwo[6] = 1;
+      break;
+      
+    }
+    
+    byteOne = boolArrayToByte(regOne);
+    byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+}
+
+//Code for letter 
+void letterC(int cell) {
+  //Clears bools  
+  bool regOne[8] = {0,0,0,0,0,0,0,0}; 
+  bool regTwo[8] = {0,0,0,0,0,0,0,0}; 
+  
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[1] = 1;
+      break;
+      
+      case 2:
+      regOne[3] = 1;
+      break;
+      
+      case 3:
+      regOne[5] = 1;
+      break;
+
+      case 4:
+      regOne[7] = 1;
+      break;
+
+      case 5:
+      regTwo[2] = 1;
+      break;
+
+      case 6:
+      regTwo[4] = 1;
+      break;
+
+      case 7:
+      regTwo[6] = 1;
+      break;
+      
+    }
+    
+    byte byteOne = boolArrayToByte(regOne);
+    byte byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[2] = 1;
+      break;
+      
+      case 2:
+      regOne[4] = 1;
+      break;
+      
+      case 3:
+      regOne[6] = 1;
+      break;
+
+      case 4:
+      regTwo[1] = 1;
+      break;
+
+      case 5:
+      regTwo[3] = 1;
+      break;
+
+      case 6:
+      regTwo[5] = 1;
+      break;
+
+      case 7:
+      regTwo[7] = 1;
+      break;
+      
+    }
+    
+    byteOne = boolArrayToByte(regOne);
+    byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+}
+
+//Code for letter D
+void letterD(int cell) {
+  //Clears bools  
+  bool regOne[8] = {0,0,0,0,0,0,0,0}; 
+  bool regTwo[8] = {0,0,0,0,0,0,0,0}; 
+  
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[1] = 1;
+      break;
+      
+      case 2:
+      regOne[3] = 1;
+      break;
+      
+      case 3:
+      regOne[5] = 1;
+      break;
+
+      case 4:
+      regOne[7] = 1;
+      break;
+
+      case 5:
+      regTwo[2] = 1;
+      break;
+
+      case 6:
+      regTwo[4] = 1;
+      break;
+
+      case 7:
+      regTwo[6] = 1;
+      break;
+      
+    }
+    
+    byte byteOne = boolArrayToByte(regOne);
+    byte byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[2] = 1;
+      break;
+      
+      case 2:
+      regOne[4] = 1;
+      break;
+      
+      case 3:
+      regOne[6] = 1;
+      break;
+
+      case 4:
+      regTwo[1] = 1;
+      break;
+
+      case 5:
+      regTwo[3] = 1;
+      break;
+
+      case 6:
+      regTwo[5] = 1;
+      break;
+
+      case 7:
+      regTwo[7] = 1;
+      break;
+      
+    }
+    
+    byteOne = boolArrayToByte(regOne);
+    byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+    bool regOne3[8] = {0,0,0,0,0,0,0,0}; 
+    bool regTwo3[8] = {0,0,0,0,0,0,0,0}; 
+      //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 10); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne3[2] = 1;
+      break;
+      
+      case 2:
+      regOne3[4] = 1;
+      break;
+      
+      case 3:
+      regOne3[6] = 1;
+      break;
+
+      case 4:
+      regTwo3[1] = 1;
+      break;
+
+      case 5:
+      regTwo3[3] = 1;
+      break;
+
+      case 6:
+      regTwo3[5] = 1;
+      break;
+
+      case 7:
+      regTwo3[7] = 1;
+      break;
+      
+    }
+    
+    byteOne = boolArrayToByte(regOne3);
+    byteTwo = boolArrayToByte(regTwo3);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+}
+
+//Code for letter D
+void letterE(int cell) {
+  //Clears bools  
+  bool regOne[8] = {0,0,0,0,0,0,0,0}; 
+  bool regTwo[8] = {0,0,0,0,0,0,0,0}; 
+  
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 12); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne[1] = 1;
+      break;
+      
+      case 2:
+      regOne[3] = 1;
+      break;
+      
+      case 3:
+      regOne[5] = 1;
+      break;
+
+      case 4:
+      regOne[7] = 1;
+      break;
+
+      case 5:
+      regTwo[2] = 1;
+      break;
+
+      case 6:
+      regTwo[4] = 1;
+      break;
+
+      case 7:
+      regTwo[6] = 1;
+      break;
+      
+    }
+    
+    byte byteOne = boolArrayToByte(regOne);
+    byte byteTwo = boolArrayToByte(regTwo);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
+    bool regOne2[8] = {0,0,0,0,0,0,0,0}; 
+    bool regTwo2[8] = {0,0,0,0,0,0,0,0}; 
+  //Sets latch LOW
+  digitalWrite(latchPin, LOW);
+  //Sends data for letterA out
+  shiftOut(dataPin, clockPin, 10); //Turns Rows 2 and 3 off
+    
+    switch(cell) {
+      case 1:
+      regOne2[2] = 1;
+      break;
+      
+      case 2:
+      regOne2[4] = 1;
+      break;
+      
+      case 3:
+      regOne2[6] = 1;
+      break;
+
+      case 4:
+      regTwo2[1] = 1;
+      break;
+
+      case 5:
+      regTwo2[3] = 1;
+      break;
+
+      case 6:
+      regTwo2[5] = 1;
+      break;
+
+      case 7:
+      regTwo2[7] = 1;
+      break;
+      
+    }
+    
+    byteOne = boolArrayToByte(regOne2);
+    byteTwo = boolArrayToByte(regTwo2);
+    Serial.print(byteOne);
+    shiftOut(dataPin, clockPin, byteTwo);
+    shiftOut(dataPin, clockPin, byteOne);
+    digitalWrite(latchPin, HIGH);
+    delay(d);
 }

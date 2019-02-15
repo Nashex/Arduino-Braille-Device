@@ -129,14 +129,16 @@ void shiftOut(int myDataPin, int myClockPin, byte myDataOut) {
   digitalWrite(myClockPin, 0);
 }
 
-void displayLetter(int cell) {
+void displayLetter(int cell, char charArray[]) {
   while(onScreen != 0) {
     for (int i = 0; i < str_len; i++) {
       char inChar = charArray[i];
-      String letterArray = inChar + "[j]"
-      double presentLetters[7];
+      String letterArray = inChar + "[j]";
+      double presentLetter[7];
       presentLetter[i] = letterArray;
-      for (int j = 0; 
+      for (j = 0; j < 6; j++) {
+        if (presentLetter[0] == 1) {
+          
         }
       }
       digitalWrite(latchPin, LOW);
@@ -150,5 +152,3 @@ void displayLetter(int cell) {
   
   
 }
-
-
